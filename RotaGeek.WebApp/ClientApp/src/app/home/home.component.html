@@ -1,0 +1,68 @@
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Contact Us!</h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- form goes here -->
+    <form (ngSubmit)="processForm()">
+      <!-- name -->
+      <div class="form-group">
+        <input type="text"
+               name="name"
+               class="form-control"
+               placeholder="Your Name"
+               [(ngModel)]="name"
+               required
+               minlength="3"
+               #nameInput="ngModel">
+        <div class="help is-error" *ngIf="nameInput.invalid && nameInput.dirty">
+          Name is required.
+        </div>
+      </div>
+      <!-- email -->
+      <div class="form-group">
+        <input type="email"
+               name="email"
+               class="form-control"
+               placeholder="Your Email"
+               [(ngModel)]="email"
+               required
+               email
+               #emailInput="ngModel">
+        <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+          Needs to be a valid email.
+        </div>
+      </div>
+      <!-- message -->
+      <div class="form-group">
+        <textarea class="form-control"
+                  name="message"
+                  placeholder="Your Message"
+                  [(ngModel)]="message"
+                  required
+                  #messageInput="ngModel" rows="3"></textarea>
+        <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+          Your message is required.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="title">Contacts</h2>
+    <ul>
+      <li *ngFor="let c of Contacts">
+        {{ c.id }} - {{ c.name}} - {{ c.emailAddress }}
+      </li>
+    </ul>
+  </div>
+</section>
+
