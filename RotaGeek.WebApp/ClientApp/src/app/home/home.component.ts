@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
 
     this.contactservice.createContact(this.name, this.email, this.message).subscribe(() => {
 
+      alert('Success');
     });
   }
 }

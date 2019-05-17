@@ -74,13 +74,20 @@ namespace RotaGeek.WebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Contact contact)
+        public IActionResult Post(string name, string emailAddress, string message)
         {
             _logger.LogInformation("api/contact/Post Executing..");
 
+            Contact _newContact = new Contact();
+            _newContact.EmailAddress = emailAddress;
+            _newContact.Name = name;
+            _newContact.Id = 0;
+            _newContact.EnteredDate = DateTime.Now;
+            _newContact.Message = message;
+
             try
             {
-                var items = _repository.Add<Contact>(contact);
+                var items = _repository.Add<Contact>(_newContact);
 
                 _logger.LogInformation("api/contact/Post Complete..");
 

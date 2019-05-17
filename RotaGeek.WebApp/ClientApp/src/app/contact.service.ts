@@ -32,10 +32,7 @@ export class ContactService {
   createContact(name: string, email: string, message: string): Observable<Contact> {
 
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      Id: 0, Name: name, EmailAddress: email, Message: message, EnteredDate: Date.now
-    }
 
-    return this.http.post<Contact>(this.accessPointUrl + '/', body, { headers });
+    return this.http.post<Contact>(this.accessPointUrl + '?name=' + name + '&emailAddress=' + email + '&message=' + message, { headers });
   } 
 }
